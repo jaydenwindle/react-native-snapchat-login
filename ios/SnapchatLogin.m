@@ -34,7 +34,7 @@ RCT_REMAP_METHOD(logout,
                  logoutResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-    [SCSDKLoginClient clearToken;
+    [SCSDKLoginClient clearToken];
     resolve(@{@"result": @(YES)});
 }
 
