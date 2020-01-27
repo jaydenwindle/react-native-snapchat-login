@@ -34,9 +34,8 @@ RCT_REMAP_METHOD(logout,
                  logoutResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-    [SCSDKLoginClient unlinkAllSessionsWithCompletion:^(BOOL success) {
-        resolve(@{@"result": @(success)});
-    }];
+    [SCSDKLoginClient clearToken;
+    resolve(@{@"result": @(YES)});
 }
 
 RCT_REMAP_METHOD(isUserLoggedIn,
@@ -85,7 +84,7 @@ RCT_REMAP_METHOD(getAccessToken,
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-    [SCSDKLoginClient getAccessTokenWithCompletion:^(NSString * _Nullable accessToken, NSError *_Nullable error) {
+    [SCSDKLoginClient refreshAccessTokenWithCompletion:^(NSString * _Nullable accessToken, NSError *_Nullable error) {
         if (accessToken) {
             resolve(@{
                 @"accessToken": accessToken
